@@ -27,9 +27,6 @@
   },
   "homepage": "http://nadikun.com/code/paper-audio-player/demo",
   "devDependencies": {
-    "bower": "^1.5.3",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.0.2",
-    "gulp-sass": "^2.0.4"
+    "bower": "^1.5.3"
   }
 }

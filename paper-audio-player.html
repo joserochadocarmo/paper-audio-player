@@ -65,11 +65,18 @@ Custom property                             | Description                       
       #left,
       #right {
         height: 50px;
-        width: 50px;
+        /*width: 50px;*/
         position: relative;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        align-items: center;
       }
 
       #left {
+        width: 50px;  
         background-color: var(--paper-audio-player-color, blueviolet);
       }
 
@@ -99,9 +106,9 @@ Custom property                             | Description                       
         margin: auto;
       }
 
-      #replay {
+      .replay {
         opacity: 0;
-        color: var(--paper-audio-player-color, blueviolet);
+        display: flex;
       }
 
       #title,
@@ -140,11 +147,11 @@ Custom property                             | Description                       
       }
       /* On hover */
 
-      :host:not(.cantplay) #right:hover #replay {
+      :host:not(.cantplay) #right:hover .replay {
         opacity: 1;
       }
 
-      #right:hover #replay {
+      #right:hover .replay {
         opacity: 1;
       }
 
@@ -203,6 +210,7 @@ Custom property                             | Description                       
       }
 
       .self-end {
+        display: flex;
         -ms-align-self: flex-end;
         -webkit-align-self: flex-end;
         align-self: flex-end;
@@ -211,6 +219,11 @@ Custom property                             | Description                       
       [hidden] {
         display: none;
       }
+
+      .controls {
+        color: var(--paper-audio-player-color, blueviolet);
+      }
+      
     </style>
 
     <div id="wrapper" class="layout-horizontal">
@@ -230,7 +243,9 @@ Custom property                             | Description                       
         <div id="title" class="fit" role="alert">{{ title }}</div>
 
         <!-- Audio HTML5 element -->
-        <audio id="audio" src="{{ src }}" preload="{{ _setPreload(autoPlay, preload) }}"></audio>
+        <audio id="audio" src="{{ src }}" preload="{{ _setPreload(autoPlay, preload) }}">
+          Seu navegado não suporta html audio.
+        </audio>
 
         <!-- Progress bar -->
         <div id="progress" class="fit"></div>
@@ -243,7 +258,7 @@ Custom property                             | Description                       
         </div>
       </div>
 
-      <div id="right" class="self-end" on-click="restart">
+      <div id="right" class="self-end">
 
         <!-- Duration -->
         <div id="duration" class="fit" hidden$="{{ ended }}">
@@ -251,8 +266,15 @@ Custom property                             | Description                       
         </div>
 
         <!-- Icon -->
-        <paper-icon-button id="replay" class="fit" icon="paper-audio-icons:replay" tabindex="-1" role="button" aria-label="Replay Audio"></paper-icon-button>
+        <div id="replay" class="replay">
+          <paper-icon-button class="controls" on-tap="restart" icon="paper-audio-icons:replay" tabindex="-1" role="button" aria-label="Replay Audio"></paper-icon-button>
+          <a href="{{ src }}" download>
+              <paper-icon-button class="controls"  icon="paper-audio-icons:file-download" tabindex="-1" role="button" aria-label="Download Audio"></paper-icon-button>
+          </a>
+        </div>
+        
       </div>
+     
     </div>
   </template>
 
@@ -324,6 +346,7 @@ Custom property                             | Description                       
         }
       },
 
+      //TODO FIX - não funciona
       listeners: {
         'audio.loadedmetadata': '_onCanPlay',
         'audio.playing': '_onPlaying',

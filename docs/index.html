@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>Paper-audio demo</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js"></script>
+  
+  <!--<link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">-->
+  <link rel="import" href="paper-audio-player.html">
+  <style>
+    .image {
+      background: url("download.webp") no-repeat;
+      background-size: 100%;
+      height: 300px;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vertical-section-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .horizontal {
+      display: flex;
+      flex-direction: row;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="vertical-section-container centered">
+    <h3>Basic paper-audio demo</h3>
+    <!--<demo-snippet>-->
+      <!--<template>-->
+        <style is="custom-style">
+        
+          paper-audio-player {
+            width: 80%;
+            padding: 10px 0;
+            margin: auto 10px;
+          }
+
+          paper-audio-player.orange {
+            --paper-audio-player-color: #F05C38;
+          }
+
+          paper-audio-player.blue {            
+            --paper-audio-player-color: steelblue;
+          }
+
+          paper-audio-player.broken {
+            width: 100%;
+            --paper-audio-player-color: #43BBF9;
+          }
+
+        </style>
+
+        <div class="image">
+          <paper-audio-player class="orange" preload="metadata" src="https://www.radio.ufg.br/up/120/o/debate_aquecimento_global_-_parte_01.mp3?1495827993"
+            title="Debate aquecimento global - parte 01"></paper-audio-player>
+        </div>
+
+        <div class="horizontal">
+          <paper-audio-player class="blue" preload="metadata" time-offset="257" src="https://www.radio.ufg.br/up/120/o/debate_aquecimento_global_-_parte_03.mp3?1495828035"
+            title="Parte 03"></paper-audio-player>
+
+          <paper-audio-player class="blue" preload="metadata" src="http://nadikun.com/audio/noclique-day2.wav" title="Parte 04"></paper-audio-player>
+
+        </div>
+        <p>Quando o audio não puder ser executado pelo navegador ou arquivo não for encontrado!</p>
+        <paper-audio-player class="broken" src="http://nadikun.com/audio/somefile.m3" title="Debate aquecimento global - parte 05"></paper-audio-player>
+
+      <!--</template>-->
+    <!--</demo-snippet>-->
+  </div>
+</body>
+
+</html>
